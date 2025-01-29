@@ -85,4 +85,3 @@ def stu_view_exams(request):
         exams = []
 
     return render(request, 'exams/stu_view_exams.html', {'exams': exams})
-

@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('register/',user_views.register, name='register'),
+    path('not_authorized', user_views.not_authorized, name='not_authorized'),
     path('login/', user_views.user_login, name='login'),
     path("accounts/", include("allauth.urls")),
     path('admindash/', user_views.admin_dash, name='admin-dash'),
@@ -17,6 +18,9 @@ urlpatterns = [
     path('assign-teacher/', user_views.assign_teacher, name='assign-teacher'),
     path('assign-student/', user_views.assign_student, name='assign-student'),
     path('display-users/', user_views.dispay_users, name='display-users'),
+    path('view_timetable/', user_views.view_timetable, name='view-timetable'),
+    path('update_timetable/<int:timetable_id>/', user_views.update_timetable, name='update-timetable'),
+    path('delete_timetable/<int:timetable_id>/', user_views.delete_timetable, name='delete-timetable'),
     path('display_students/', user_views.display_students, name='display-students'),
     path('userdash/', user_views.user_dash, name='user-dash'),
     path('teacherdash/', user_views.teacher_dash, name='teacher-dash'),

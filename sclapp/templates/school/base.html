@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -18,38 +17,35 @@
     
   <nav class="navbar navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand">Hello, welcome</a>
+      <a class="navbar-brand">Hello, {% if user.is_authenticated %}{{ user.username }}{% else %}Guest{% endif %}</a>
       <form class="d-flex">
         {% csrf_token %}
-        {% comment %} {% if user.is_authenticated %} {% endcomment %}
-            {% comment %} <p>{{ request.user.username }}</p> {% endcomment %}
+        
+        {% if user.is_authenticated %}
             <a class="btn btn-primary" href="{% url 'scl-home' %}" role="button">Home</a>
             <a class="btn btn-primary" href="{% url 'logout' %}" role="button">Logout</a>
-            {% comment %} <a class="btn btn-primary" href="{% url 'reset_password' %}" role="button">Forgotpassword?</a> {% endcomment %}
-        
-        {% comment %} {% else %} {% endcomment %}
-            {% comment %} <a class="btn btn-primary" href="{% url 'login' %}" role="button">login</a>
-            <a class="btn btn-primary" href="{% url 'register' %}" role="button">Register</a> {% endcomment %}
-    
-        {% comment %} {% endif %} {% endcomment %}
+        {% else %}
+            <a class="btn btn-primary" href="{% url 'login' %}" role="button">Login</a>
+            <a class="btn btn-primary" href="{% url 'register' %}" role="button">Register</a>
+        {% endif %}
 
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
   </nav>
-   
-  {% block content %}
-  
-    {% if messages %}
-      <div class="alert alert-info" role="alert">
-          {% for message in messages %}
-              <p>{{ message }}</p>
-          {% endfor %}
-      </div>
-    {% endif %}
 
-  {% endblock %}
+  {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+  {% endif %}
+
+  {% block content %}{% endblock %}
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
    

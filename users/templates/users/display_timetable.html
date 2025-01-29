@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container-lg">
-   <h1>Teacher Timetables</h1>
+   <h1>Teachers Timetable</h1>
    <hr>
 
    <table class="table">
@@ -19,17 +19,20 @@
        <tbody>
            {% for timetable in timetables %}
                <tr>
-                   <td>{{ timetable.teacher.username }}</td>
-                   <td>{{ timetable.subject.subname }}</td>
-                   <td>{{ timetable.classes.classes }} - {{ timetable.classes.grade }}</td>
+                   <td>{{ timetable.teacher_assignment.user.username }}</td>
+                   <td>{{ timetable.teacher_assignment.sub_name.subname }}</td>
+                   <td>{{ timetable.teacher_assignment.classes.classes }} - {{ timetable.teacher_assignment.classes.grade }}</td>
                    <td>{{ timetable.day_of_week }}</td>
                    <td>{{ timetable.start_time }} - {{ timetable.end_time }}</td>
                </tr>
            {% endfor %}
        </tbody>
    </table>
-
-   <a class="btn btn-primary" href="{% url 'admin-dashboard' %}" role="button">Back</a>
+   {% if teacher.is_logined %}
+        <a class="btn btn-primary" href="{% url 'teacher-dash' %}" role="button">Back</a>
+    {% else %}
+        <a class="btn btn-primary" href="{% url 'student-dash' %}" role="button">Back</a>
+    {% endif %}
 </div>
 
 {% endblock %}

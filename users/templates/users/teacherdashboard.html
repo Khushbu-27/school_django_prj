@@ -9,8 +9,9 @@
     <p> Hello, {{ user.username }}<br><br>
     
     <a class="btn btn-primary" href="{% url 'teacher-profile' %}" role="button">Profile</a>
-    <a class="btn btn-primary" href="{% url 'add-exam' %}" role="button">Add Exam</a>
-    <a class="btn btn-primary" href="{% url 'display-exams' %}" role="button">View All Exams</a>
+    <a class="btn btn-primary" href="{% url 'view-timetable' %}" role="button">View Timetable</a>
+    <a class="btn btn-primary" href="{% url 'add-exam' %}" role="button">Add Exam</a><br><br>
+    <a class="btn btn-primary" href="{% url 'display-exams' %}" role="button">View All Exams</a>    
     <a class="btn btn-primary" href="{% url 'generate-stu-marks' %}" role="button">Generate Student Marks</a>
     <a class="btn btn-primary" href="{% url 'display-students' %}" role="button">View Student Data</a>
 
