@@ -41,5 +41,12 @@
             {% endfor %}
         </tbody>
     </table><br>
-    <a class="btn btn-primary" href="{% url 'student-dash' %}" role="button">Back</a>
+
+   {% if user.is_authenticated %}
+       {% if user.userprofile.role == 'teacher' %}
+           <a class="btn btn-primary" href="{% url 'teacher-dash' %}" role="button">Back</a>
+       {% elif user.userprofile.role == 'student' %}
+           <a class="btn btn-primary" href="{% url 'student-dash' %}" role="button">Back</a>
+       {% endif %}
+   {% endif %}
 {% endblock %}

@@ -290,7 +290,7 @@ def add_timetable(request):
             form = TimetableForm()
 
     return render(request, 'users/add_timetable.html', {'form': form, 'timetables':timetables})
-    
+   
 
 @login_required
 @user_passes_test(is_admin)

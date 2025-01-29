@@ -5,7 +5,7 @@
 <div class="container-lg">
    <h1>Assign Class-sub to Teacher</h1><hr>
    <br>
-   <form method="post">
+   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
 

@@ -27,15 +27,6 @@ class UserProfile(models.Model):
             self.last_login_date = today  
             self.save()
 
-    # def save(self, *args, **kwargs):
-    #     super().save(*args, **kwargs)
-
-    #     if self.role == 'teacher':
-    #         Teacher.objects.get_or_create(user=self.user)
-            
-    #     elif self.role == 'student':
-    #         Student.objects.get_or_create(user=self.user)
-
 class Class(models.Model):
     
     classes =  models.IntegerField(null=True)
@@ -71,7 +62,6 @@ class TeacherClassAssignment(models.Model):
     grade = models.ForeignKey(Class, on_delete=models.CASCADE,related_name="teacher_grade_assignments", null=True, default= None)
     sub_name = models.ForeignKey(Subject, on_delete=models.CASCADE)
    
-
     def __str__(self):
         return f"{self.user.username} - {self.classes.classes} ({self.grade.grade}) - {self.sub_name.subname}"
 
@@ -85,4 +75,3 @@ class Timetable(models.Model):
 
     def __str__(self):
         return f"{self.teacher_assignment.user.username} - ({self.teacher_assignment.classes}) - {self.teacher_assignment.sub_name.subname} - {self.day_of_week} ({self.start_time} - {self.end_time})"
-

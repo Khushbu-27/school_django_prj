@@ -60,7 +60,13 @@ class TeacherClassAssignmentForm(forms.ModelForm):
     
     class Meta:
         model = TeacherClassAssignment
-        fields = ['user','classes', 'grade' , 'sub_name']
+        fields = ['user','classes', 'grade', 'sub_name']
+        
+        def __init__(self, *args, **kwargs):
+            super(TeacherClassAssignmentForm, self).__init__(*args, **kwargs)
+
+            self.fields['classes'].queryset = Class.objects.filter(grade__isnull=True)
+            self.fields['grade'].queryset = Class.objects.exclude(grade__isnull=True)
 
     # def __init__(self, *args, **kwargs):
     #     super().__init__(*args, **kwargs)
@@ -92,8 +98,11 @@ class StudentClassAssignmentForm(forms.ModelForm):
         model = StudentClassAssignment
         fields = ['user', 'classes', 'grade']
         
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        def __init__(self, *args, **kwargs):
+            super(StudentClassAssignmentForm, self).__init__(*args, **kwargs)
+
+            self.fields['classes'].queryset = Class.objects.filter(grade__isnull=True)
+            self.fields['grade'].queryset = Class.objects.exclude(grade__isnull=True)
 
     # def clean(self):
     #     cleaned_data = super().clean()

@@ -3,8 +3,15 @@
 {% block content %}
 
 <div class="container-lg">
-   <h1>Teachers Timetable</h1>
-   <hr>
+    {% if user.is_authenticated %}
+       {% if user.userprofile.role == 'teacher' %}
+            <h1>Teachers Timetable</h1>
+            <hr>
+       {% elif user.userprofile.role == 'student' %}
+            <h1>Timetable</h1>
+            <hr>
+        {% endif %}
+   {% endif %}
 
    <table class="table">
        <thead>
@@ -28,11 +35,16 @@
            {% endfor %}
        </tbody>
    </table>
-   {% if teacher.is_logined %}
-        <a class="btn btn-primary" href="{% url 'teacher-dash' %}" role="button">Back</a>
-    {% else %}
-        <a class="btn btn-primary" href="{% url 'student-dash' %}" role="button">Back</a>
-    {% endif %}
+
+   {% if user.is_authenticated %}
+       {% if user.userprofile.role == 'teacher' %}
+           <a class="btn btn-primary" href="{% url 'teacher-dash' %}" role="button">Back</a>
+       {% elif user.userprofile.role == 'student' %}
+           <a class="btn btn-primary" href="{% url 'student-dash' %}" role="button">Back</a>
+       {% endif %}
+   {% endif %}
 </div>
 
 {% endblock %}
+
+
