@@ -1,0 +1,12 @@
+
+{% extends "school/base.html" %}
+
+{% block content %}
+
+<div class="container-lg">
+   <h1>User Dashboard</h1>
+   <hr>
+   <a class="btn btn-primary" href="{% url 'user-profile' %}" role="button">Profile</a>
+   {% block content2 %}{% endblock content2 %}
+</div>
+{% endblock %}

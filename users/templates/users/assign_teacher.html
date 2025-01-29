@@ -1,0 +1,43 @@
+
+{% extends "school/base.html" %}
+
+{% block content %}
+<div class="container-lg">
+   <h1>Assign Class-sub to Teacher</h1><hr>
+   <br>
+   <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button class="btn btn-primary" type="submit">Assign Teacher</button>
+    <a class="btn btn-primary" href="{% url 'admin-dash' %}" role="button">Back</a>
+</form>
+
+<br><br>
+   <h2>All Asssign Teachers</h2>
+   <hr>
+
+   <table class="table">
+       <thead>
+           <tr>
+                <th>Teacher</th>
+               <th>Class</th>
+               <th>Grade</th>
+               <th>Subject</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for teacher in teachers %}
+               <tr>
+                   <td>{{ teacher.user.username }}</td>
+                   <td>{{ teacher.classes.classes }}</td>
+                   <td>{{ teacher.grade.grade }}</td>
+                   <td>{{ teacher.sub_name.subname }}</td>
+               </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+
+</div>
+
+{% endblock %}

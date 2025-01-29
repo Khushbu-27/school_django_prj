@@ -1,0 +1,36 @@
+{% extends "school/base.html" %}
+
+{% block content %}
+<div class="container-lg">
+    <h1>My Exam Marks</h1>
+    <hr>
+
+    {% if marks %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Subject</th>
+                    <th>Exam Date</th>
+                    <th>Marks Obtained</th>
+                    <th>Total Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mark in marks %}
+                    <tr>
+                        <td>{{ mark.exam.teacher_assignment.classes }}</td>
+                        <td>{{ mark.exam.teacher_assignment.sub_name.subname }}</td>
+                        <td>{{ mark.exam.exam_date }}</td>
+                        <td>{{ mark.generated_marks }}</td>
+                        <td>{{ mark.exam.marks }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No marks available for the exams.</p>
+    {% endif %}
+    <a class="btn btn-primary" href="{% url 'student-dash' %}" role="button">Back</a>
+</div>
+{% endblock %}

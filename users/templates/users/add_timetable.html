@@ -1,0 +1,45 @@
+
+{% extends "school/base.html" %}
+
+{% block content %}
+
+<div class="container-lg">
+   <h1>Add Teacher Timetable</h1>
+   <hr>
+
+   <form method="POST">
+       {% csrf_token %}
+       {{ form.as_p }}
+       <button type="submit" class="btn btn-primary">Save Timetable</button>
+       <a class="btn btn-primary" href="{% url 'admin-dash' %}" role="button">Back</a>
+   </form>
+   
+   <br>
+   <h1>Teacher Timetables</h1>
+   <hr>
+
+   <table class="table">
+       <thead>
+           <tr>
+               <th>Teacher</th>
+               <th>Subject</th>
+               <th>Class</th>
+               <th>Day</th>
+               <th>Time</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for timetable in timetables %}
+               <tr>
+                   <td>{{ timetable.teacher_assignment.user.username }}</td>
+                   <td>{{ timetable.teacher_assignment.sub_name.subname }}</td>
+                   <td>{{ timetable.teacher_assignment.classes.classes }} - {{ timetable.teacher_assignment.classes.grade }}</td>
+                   <td>{{ timetable.day_of_week }}</td>
+                   <td>{{ timetable.start_time }} - {{ timetable.end_time }}</td>
+               </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+</div>
+
+{% endblock %}

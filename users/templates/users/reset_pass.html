@@ -1,0 +1,24 @@
+
+{% extends "school/base.html" %}
+
+{% block content %}
+    <br><br>
+    <div class="text-center" style="width: 80%; margin: 0 auto">
+    <h2>Welcome to the Password Reset Page</h2><br>
+    <h4>
+        Forgot your password? Please enter the email address you used to register
+        with us and we will send you a link to reset your password
+    </h4>
+    </div>
+    <br/>
+
+    <form action="" method="POST" class="text-center">
+    {% csrf_token %}
+    {{form}}<br>
+    <input type="submit" value="Send email" /><br>
+    </form><br/>
+    <div class="text-center">
+    <a href="{% url 'login' %}">Return to login page</a>
+    </div>
+
+{% endblock%}

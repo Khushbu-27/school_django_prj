@@ -1,0 +1,45 @@
+
+{% extends "school/base.html" %}
+
+{% block content %}
+
+<br>
+    <h1  style="text-align:center">All Exams Schedules</h1>
+    <br>
+    <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+                <th>Exam_ID</th>
+                <th>Class</th>
+                <th>Grade</th>
+                <th>Subject</th>
+                <th>Exam Date</th>
+                <th>Exam Time</th>
+                <th>Marks</th>
+                <th>Is completed</th>
+                <th>Added BY</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {% for exam in exams %}
+                <tr>
+                    <td>{{ exam.id }}</td>
+                    <td>{{exam.teacher_assignment.classes.classes}}</td>
+                    <td>{{exam.teacher_assignment.classes.grade}}</td>
+                    <td>{{exam.teacher_assignment.sub_name.subname}}</td>
+                    <td>{{ exam.exam_date }}</td>
+                    <td>{{ exam.exam_time}}</td>
+                    <td>{{ exam.marks }}</td>
+                    <td>{{ exam.is_completed }}</td>
+                    <td>{{ exam.teacher_assignment.user.username}}</td>
+                    {% comment %} <td>
+                        <a href="{% url 'delete-user' user.id %}" class="btn btn-danger">Delete</a>
+                        <a href="{% url 'update-user' user.id %}" class="btn btn-warning">Update</a>
+                    </td> {% endcomment %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table><br>
+    <a class="btn btn-primary" href="{% url 'teacher-dash' %}" role="button">Back</a>
+{% endblock %}

@@ -1,0 +1,17 @@
+
+{% extends "school/base.html" %}
+
+{% block content %}
+    {% comment %} <a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a> {% endcomment %}
+    <h2>Register</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+    <div class="border-top pt-3">   
+        <small class="text-muted">
+            Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+        </small>
+    </div>
+{% endblock %}

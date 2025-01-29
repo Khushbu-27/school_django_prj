@@ -1,0 +1,35 @@
+{% extends "school/base.html" %}
+
+{% block content %}
+
+<div class="container-lg">
+   <h1>Teacher Timetables</h1>
+   <hr>
+
+   <table class="table">
+       <thead>
+           <tr>
+               <th>Teacher</th>
+               <th>Subject</th>
+               <th>Class</th>
+               <th>Day</th>
+               <th>Time</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for timetable in timetables %}
+               <tr>
+                   <td>{{ timetable.teacher.username }}</td>
+                   <td>{{ timetable.subject.subname }}</td>
+                   <td>{{ timetable.classes.classes }} - {{ timetable.classes.grade }}</td>
+                   <td>{{ timetable.day_of_week }}</td>
+                   <td>{{ timetable.start_time }} - {{ timetable.end_time }}</td>
+               </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+
+   <a class="btn btn-primary" href="{% url 'admin-dashboard' %}" role="button">Back</a>
+</div>
+
+{% endblock %}

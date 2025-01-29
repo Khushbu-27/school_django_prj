@@ -1,0 +1,18 @@
+.selector-for-some-widget {
+    box-sizing: content-box;
+  }
+
+
+.container-lg {
+ 
+  max-width: 960px;
+  padding-top: 110px;
+  padding-left: 155px;
+  
+}
+
+.form {
+  padding: 40px;
+  border: 2px solid #ccc;
+  background-color: #f9f9f9;
+}

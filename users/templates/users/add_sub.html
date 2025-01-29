@@ -1,0 +1,37 @@
+
+{% extends "school/base.html" %}
+
+{% block content %}
+<div class="container-lg">
+   <h1>Add subject</h1><hr>
+   <br>
+   <form method="POST">
+       {% csrf_token %}
+       {{ form.as_p }}
+       <button class="btn btn-primary" type="submit">Added</button>
+       <a class="btn btn-primary" href="{% url 'admin-dash' %}" role="button">Back</a>
+   </form>
+   <br><br>
+   <h2>All Subjects</h2>
+   <hr>
+   <br>
+   <table class="table">
+       <thead>
+           <tr>
+               <th>Subject</th>
+               <th>Code</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for subject in subjects %}
+               <tr>
+                   <td>{{ subject.subname }}</td>
+                   <td>{{ subject.code }}</td>
+               </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+
+</div>
+
+{% endblock %}

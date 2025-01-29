@@ -1,0 +1,45 @@
+
+
+{% extends "school/base.html" %}
+
+{% block content %}
+
+<br>
+    <h1  style="text-align:center">Students Data</h1>
+    <br>
+    <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Email</th>
+                <th>Class</th>
+                <th>Grade</th>
+                <th>Last Login</th>
+                <th>Attendance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{student.user.username }}</td>
+                    <td>{{student.user.email}}</td>
+                    <td>{{student.classes.classes}}</td>
+                    <td>{{student.classes.grade}}</td>
+                    <td>{{student.user.last_login}}</td>
+                    <td>
+                        {% if student.user.userprofile %}
+                             {{ student.user.userprofile.attendance_count }}
+                         {% else %}
+                             N/A
+                         {% endif %}
+                     </td>
+                    {% comment %} <td>
+                        <a href="{% url 'delete-user' user.id %}" class="btn btn-danger">Delete</a>
+                        <a href="{% url 'update-user' user.id %}" class="btn btn-warning">Update</a>
+                    </td> {% endcomment %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table><br>
+    <a class="btn btn-primary" href="{% url 'teacher-dash' %}" role="button">Back</a>
+{% endblock %}

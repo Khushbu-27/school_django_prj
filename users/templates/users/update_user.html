@@ -1,0 +1,20 @@
+{% extends "school/base.html" %}
+
+{% block content %}
+<h1 style="text-align:center">Update User</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+<br>
+<a class="btn btn-secondary" href="{% url 'display-users' %}">Cancel</a>
+{% endblock %}

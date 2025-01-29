@@ -1,0 +1,20 @@
+
+{% extends "school/base.html" %}
+
+{% block content %}
+
+<div class="container-lg">
+   <h1> Admin Dashboard </h1>
+   <hr>
+   <a class="btn btn-primary" href="{% url 'admin-profile' %}" role="button">Profile</a>
+   <a class="btn btn-primary" href="{% url 'add-user' %}" role="button">Create New User</a>
+   <a class="btn btn-primary" href="{% url 'add-class' %}" role="button">Create New class</a>
+   <a class="btn btn-primary" href="{% url 'add-sub' %}" role="button">Create New subject</a><br><br> 
+   <a class="btn btn-primary" href="{% url 'assign-teacher' %}" role="button">Assign Teacher</a>
+   <a class="btn btn-primary" href="{% url 'assign-student' %}" role="button">Assign Student</a> 
+   <a class="btn btn-primary" href="{% url 'add-timetable' %}" role="button">Create timetable</a>
+   <a class="btn btn-primary" href="{% url 'display-users' %}" role="button">Show users data</a>
+   
+</div>
+
+{% endblock %}

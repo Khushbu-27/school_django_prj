@@ -1,0 +1,25 @@
+
+{% extends "school/base.html" %}
+
+{% block content %}
+<div class="container-lg">
+   <h2>Create New User</h2>
+   <br>
+   <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        {% comment %} {% if form.instance.role == 'teacher' %}
+            {{ teacher_form.as_p }}
+        {% elif form.instance.role == 'student' %}
+            {{ student_form.as_p }}
+        {% endif %} {% endcomment %}
+
+        <button type="submit">Create User</button>
+        <a class="btn btn-primary" href="{% url 'admin-dash' %}" role="button">Back</a>
+    </form>
+    
+
+</div>
+
+{% endblock %}

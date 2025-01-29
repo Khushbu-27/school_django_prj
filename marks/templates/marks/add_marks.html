@@ -1,0 +1,52 @@
+
+{% extends "school/base.html" %}
+
+{% block content %}
+<div class="container-lg">
+    <h1>Generate Student Marks</h1>
+    <hr>
+
+    {% if completed_exams %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Generate Marks</button>
+            <a class="btn btn-primary" href="{% url 'teacher-dash' %}" role="button">Back</a>
+        </form>
+    {% else %}
+        <p>You cannot generate marks before the exam is completed.</p>
+    {% endif %}
+
+    <br><br>
+
+    <h2>Student Marks Data</h2><hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Class</th>
+                <th>Subject</th>
+                <th>Exam Date</th>
+                <th>Exam Time</th>
+                <th> Generated Marks</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mark in marks %}
+                <tr>
+                    <td>{{ mark.student_assignment.user.username }}</td>
+                    <td>{{ mark.student_assignment.classes }}</td>
+                    <td>{{ mark.exam.teacher_assignment.sub_name.subname }}</td>
+                    <td>{{ mark.exam.exam_date }}</td>
+                    <td>{{ mark.exam.exam_time }}</td> 
+                    <td>{{ mark.generated_marks }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No student marks found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
