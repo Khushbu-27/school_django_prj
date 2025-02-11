@@ -5,7 +5,7 @@ from .models import Exam, TeacherClassAssignment
 class ExamForm(forms.ModelForm):
     class Meta:
         model = Exam
-        fields = ['teacher_assignment', 'exam_date', 'exam_time', 'marks', 'is_completed']
+        fields = ['teacher_assignment', 'exam_date', 'exam_time', 'marks', 'is_completed', 'test_paper']
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)  

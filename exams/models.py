@@ -10,7 +10,8 @@ class Exam(models.Model):
     exam_date = models.DateField()  
     exam_time = models.TimeField()
     marks = models.IntegerField(default=0) 
-    is_completed = models.BooleanField(default=False)   
+    is_completed = models.BooleanField(default=False)
+    test_paper = models.FileField(upload_to='test_papers/', null=True, blank=True)   
 
     def __str__(self):
         

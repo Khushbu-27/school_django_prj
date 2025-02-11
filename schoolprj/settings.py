@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-kg$n(r1u3x_%89^-ctyf0w8-+mr-m!^l&&-b(m)lcmt=v&a!p-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1' ]
 
 
 # Application definition
@@ -42,11 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #apps
     'sclapp',
     'users',
     'exams',
     'marks',
-    
     #social auth installed apps
     'django.contrib.sites',
     'allauth',
@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google', 
     'allauth.socialaccount.providers.facebook',
+    # file uplods
+    # 'storages',
 ]
 
 MIDDLEWARE = [
@@ -165,7 +167,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend', 
 )
 
-SITE_ID = 3
+SITE_ID = 4
 LOGIN_REDIRECT_URL = 'student-dash'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('CLIENT_ID')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('CLIENT_SECRET')
@@ -176,3 +178,31 @@ SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv('FACEBOOK_APP_SECRET')
 SOCIAL_AUTH_FACEBOOK_SCOPE = [
     'email',
 ]
+
+# AWS S3 Settings
+import os
+
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+AWS_MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_QUERYSTRING_AUTH = False
+
+# STORAGES = {
+
+#     # Media file (image) management   
+#     "default": {
+#         "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+#     },
+    
+#     # CSS and JS file management
+#     "staticfiles": {
+#         "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+#     },
+# }

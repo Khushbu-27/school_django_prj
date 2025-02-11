@@ -14,23 +14,22 @@ def add_exam(request):
     exams = Exam.objects.filter(teacher_assignment__user=request.user)
     teacher_assignment = TeacherClassAssignment.objects.filter(user=request.user).first()
 
-    # if teacher_assignment is None:
-    #     messages.error(request, "You are not assigned to any class")
-    #     return redirect('teacher-dash')
-
     if request.method == 'POST':
-        form = ExamForm(request.POST, user=request.user)
+        
+        print(request.FILES)
+        form = ExamForm(request.POST, request.FILES, user=request.user) 
+        
         if form.is_valid():
-       
             exam = form.save(commit=False)
-            exam.teacher_assignment = teacher_assignment  
+            exam.teacher_assignment = teacher_assignment
             exam.save()
             messages.success(request, "Exam created successfully!")
-            return redirect('add-exam')  
+            return redirect('add-exam')
     else:
-        form = ExamForm(user=request.user) 
+        form = ExamForm(user=request.user)
 
     return render(request, 'exams/add_exam.html', {'form': form, 'exams': exams})
+
 
 @login_required
 def dispay_exams(request):
@@ -51,7 +50,7 @@ def update_exam(request, exam_id):
         form = ExamForm(request.POST, instance=exam, user=request.user)
         if form.is_valid():
             form.save()
-            return redirect('teacher-dash')  
+            return redirect('add-exam')  
     else:
       
         form = ExamForm(instance=exam, user=request.user)
@@ -85,3 +84,29 @@ def stu_view_exams(request):
         exams = []
 
     return render(request, 'exams/stu_view_exams.html', {'exams': exams})
+
+
+
+# @login_required
+# def add_exam(request):
+    
+#     exams = Exam.objects.filter(teacher_assignment__user=request.user)
+#     teacher_assignment = TeacherClassAssignment.objects.filter(user=request.user).first()
+
+#     # if teacher_assignment is None:
+#     #     messages.error(request, "You are not assigned to any class")
+#     #     return redirect('teacher-dash')
+
+#     if request.method == 'POST':
+#         form = ExamForm(request.POST, user=request.user)
+#         if form.is_valid():
+       
+#             exam = form.save(commit=False)
+#             exam.teacher_assignment = teacher_assignment  
+#             exam.save()
+#             messages.success(request, "Exam created successfully!")
+#             return redirect('add-exam')  
+#     else:
+#         form = ExamForm(user=request.user) 
+
+#     return render(request, 'exams/add_exam.html', {'form': form, 'exams': exams})

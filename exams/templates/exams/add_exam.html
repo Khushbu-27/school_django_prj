@@ -24,6 +24,7 @@
                 <th>Exam Time</th>
                 <th>Marks</th>
                 <th>Is completed</th>
+                <th>Test Paper</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -36,6 +37,7 @@
                     <td>{{ exam.exam_time }}</td>
                     <td>{{ exam.marks }}</td>
                     <td>{{ exam.is_completed }}</td>
+                    <td> {{ exam.test_paper }}</td>
                     <td>
                         <a class="btn btn-warning" href="{% url 'update-exam' exam.id %}">Update</a>
                         <a class="btn btn-danger" href="{% url 'delete-exam' exam.id %}" onclick="return confirm('Are you sure you want to delete this exam?');">Delete</a>

@@ -74,4 +74,4 @@ class Timetable(models.Model):
     end_time = models.TimeField() 
 
     def __str__(self):
-        return f"{self.teacher_assignment.user.username} - ({self.teacher_assignment.classes}) - {self.teacher_assignment.sub_name.subname} - {self.day_of_week} ({self.start_time} - {self.end_time})"
+        return f"{self.teacher_assignment.user.username} - ({self.teacher_assignment.classes}) - {self.teacher_assignment.sub_name.subname} - {self.day_of_week} ({self.start_time} - {self.end_time})"      

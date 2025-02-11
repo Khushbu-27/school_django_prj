@@ -1,3 +1,9 @@
+
+body {
+  background: url("/static/images/sclimg.webp") no-repeat;
+  width: auto;
+}
+
 .selector-for-some-widget {
     box-sizing: content-box;
   }
@@ -6,7 +12,7 @@
 .container-lg {
  
   max-width: 960px;
-  padding-top: 110px;
+  padding-top: 30px;
   padding-left: 155px;
   
 }
