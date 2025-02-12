@@ -3,21 +3,7 @@
 
 {% load socialaccount %}
 {% block content %}
-    {% comment %} <a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a> {% endcomment %}
-    
-    {% comment %} <h2 , style="text-align:center">Login</h2><br><br> {% endcomment %}
-    {% comment %} <form method="post", style="text-align:center">
-        {% csrf_token %}
-        <label for="username">Username:</label>
-        <input type="text" name="username" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required><br><br><br>
-        <button type="submit">Login</button>
-       {% comment %} <br><br>
-        <a href="{% provider_login_url 'google' %}" class="btn btn-primary">Login with Google</a>
-        <br><br>
-        <a href="{% url 'register' %}">Don't have Click here to create.</a> 
-    </form> {% endcomment %}
+
     <div class="bg-light py-3 py-md-5">
         <div class="container">
           <div class="row justify-content-md-center">
@@ -31,7 +17,7 @@
                   </div>
                 </div>
     <form method="post">
-    {% csrf_token %}
+      {% csrf_token %}
         <div class="row gy-3 gy-md-4 overflow-hidden">
           <div class="col-12">
             <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
@@ -81,12 +67,6 @@
               </svg>
               <span class="ms-2 fs-6">Facebook</span>
             </a> 
-            {% comment %} <a href="#!" class="btn bsb-btn-xl btn-outline-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
-                <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
-              </svg>
-              <span class="ms-2 fs-6">Twitter</span>
-            </a> {% endcomment %}
           </div>
         </div>
     </div>

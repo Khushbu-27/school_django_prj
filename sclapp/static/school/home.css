@@ -1,8 +1,10 @@
 
-body {
-  background: url("/static/images/sclimg.webp") no-repeat;
-  width: auto;
-}
+body { 
+  background-image: url("/static/images/sclimg.webp"); 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover;
+} 
 
 .selector-for-some-widget {
     box-sizing: content-box;

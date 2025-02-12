@@ -294,9 +294,21 @@ def add_timetable(request):
 
 @login_required
 @user_passes_test(is_admin)
-def dispay_users(request):
-    users = User.objects.all()
-    return render(request, 'users/displayusers.html',{'users': users})
+def display_users(request):
+    
+    search_query = request.GET.get('search', '')  
+
+    if search_query:
+        users = User.objects.filter(
+            username__icontains=search_query
+        ) | User.objects.filter(
+            email__icontains=search_query
+        )
+    else:
+        users = User.objects.all()
+
+    return render(request, 'users/displayusers.html', {'users': users})
+
 
 @login_required
 def display_students(request):

@@ -6,6 +6,13 @@
 <br>
     <h1  style="text-align:center">Users Data</h1>
     <br>
+
+    <form method="get" action="{% url 'display-users' %}">
+        {% csrf_token %}
+        <input type="text" name="search" placeholder="Search Users" value="{{ request.GET.search }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
     <table class="table table-bordered border-primary">
         <thead>
             <tr>

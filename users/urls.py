@@ -17,7 +17,7 @@ urlpatterns = [
     path('add-timetable/', user_views.add_timetable, name='add-timetable'),
     path('assign-teacher/', user_views.assign_teacher, name='assign-teacher'),
     path('assign-student/', user_views.assign_student, name='assign-student'),
-    path('display-users/', user_views.dispay_users, name='display-users'),
+    path('display-users/', user_views.display_users, name='display-users'),
     path('view_timetable/', user_views.view_timetable, name='view-timetable'),
     path('update_timetable/<int:timetable_id>/', user_views.update_timetable, name='update-timetable'),
     path('delete_timetable/<int:timetable_id>/', user_views.delete_timetable, name='delete-timetable'),
@@ -47,6 +47,7 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name = "users/pass_reset_done.html"), 
          name ='password_reset_complete'
          ),
+     # path('search/', user_views.search, name="search"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
